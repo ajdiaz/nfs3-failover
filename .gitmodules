@@ -1,0 +1,8 @@
+[submodule "linux"]
+	path = linux
+	url = git://git.ajdiaz.me/ajdiaz/linux.git
+	branch = ajdiaz/nfs3-ro-failover
+[submodule "nfs-utils"]
+	path = nfs-utils
+	url = git://git.ajdiaz.me/ajdiaz/nfs-utils.git
+	branch = ajdiaz/nfs3-ro-failover
