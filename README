@@ -1,0 +1,30 @@
+NFS3 FAILOVER
+=============
+
+NFS3 Failover is part of big project were I was working during 2010 in order
+to manage a large fleet of physical hosts. To keep some files in-sync with all
+nodes in the system, I use NFS3 in read-only mode.
+
+While the master nodes provides the content of that files, the slaves
+nodes just mount the shared directory and read the data.
+
+To keep the system scalable I use a number of masters per slaves,
+that is, for example, 4 master nodes per 40 slaves nodes. Unfortunately
+mainline version of nfs3 modules (sunrpc, actually) and mount binaries
+do not support failover for NFS3 (NFS4 includes failover by design). In
+order to enable this capability, we need to implement failover
+functionality for nfs3 in kernel modules and moun options.
+
+Most of the work was done by my colleage Manuel Sanmartín, I just
+adapt these patches to run in modern linux versions and new mount
+tools.
+
+This repository contains submodules to patched kernel sources (linux/
+directory) and nfs-utils patched sources (nfs-utils/ directory).
+
+To install patched sources you need to recompile kernel and nfs-utils as
+usual:
+
+  cd linux/ && make menuconfig && make && make modules_install && make install
+  cd nfs-utils/ && ./configure && make && make install
+
